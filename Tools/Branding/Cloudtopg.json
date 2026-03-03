@@ -1,0 +1,191 @@
+{
+    "data": {
+        "branding": {
+            "colorScheme": "light",
+            "fonts": [
+                {
+                    "family": "sans-serif",
+                    "count": 131
+                },
+                {
+                    "family": "Manrope",
+                    "count": 125
+                },
+                {
+                    "family": "Bricolage Grotesque",
+                    "count": 6
+                }
+            ],
+            "colors": {
+                "primary": "#E61A1A",
+                "accent": "#69727D",
+                "background": "#333333",
+                "textPrimary": "#333333",
+                "link": "#69727D"
+            },
+            "typography": {
+                "fontFamilies": {
+                    "primary": "Manrope",
+                    "heading": "Manrope"
+                },
+                "fontStacks": {
+                    "body": [
+                        "Manrope",
+                        "sans-serif"
+                    ],
+                    "heading": [
+                        "Manrope",
+                        "sans-serif"
+                    ],
+                    "paragraph": [
+                        "Manrope",
+                        "sans-serif"
+                    ]
+                },
+                "fontSizes": {
+                    "h1": "16px",
+                    "h2": "61px",
+                    "body": "16px"
+                }
+            },
+            "spacing": {
+                "baseUnit": 4,
+                "borderRadius": "3px"
+            },
+            "components": {},
+            "images": {
+                "logo": "https://cloudtopg.com/wp-content/uploads/2025/09/Group-5.svg",
+                "favicon": "https://cloudtopg.com/wp-content/uploads/2025/09/Untitled-design.svg",
+                "ogImage": null
+            },
+            "__framework_hints": [
+                "WordPress 6.8.3"
+            ],
+            "__llm_logo_reasoning": {
+                "selectedIndex": 0,
+                "reasoning": "Strong indicators: header logo linking to homepage, header location, visible, highest logo on page, class contains logo, reasonable size. Score: 107 (clear winner by 47 points)",
+                "confidence": 0.9
+            },
+            "__llm_button_reasoning": {
+                "primary": {
+                    "index": -1,
+                    "text": "N/A",
+                    "reasoning": "LLM failed"
+                },
+                "secondary": {
+                    "index": -1,
+                    "text": "N/A",
+                    "reasoning": "LLM failed"
+                },
+                "confidence": 0
+            },
+            "confidence": {
+                "buttons": 0,
+                "colors": 0,
+                "overall": 0
+            }
+        },
+        "metadata": {
+            "viewport": "width=device-width, initial-scale=1",
+            "language": "en-US",
+            "generator": [
+                "WordPress 6.8.3",
+                "Site Kit by Google 1.168.0",
+                "Elementor 3.33.4; features: e_font_icon_svg, additional_custom_breakpoints; settings: css_print_method-external, google_font-enabled, font_display-swap"
+            ],
+            "msapplication-TileImage": "https://cloudtopg.com/wp-content/uploads/2025/09/Untitled-design.svg",
+            "robots": "max-image-preview:large",
+            "title": "Cloud Top G",
+            "favicon": "https://cloudtopg.com/wp-content/uploads/2025/09/Untitled-design.svg",
+            "scrapeId": "019bce9a-3919-77a9-a110-21064a078c88",
+            "sourceURL": "https://cloudtopg.com",
+            "url": "https://cloudtopg.com/",
+            "statusCode": 200,
+            "contentType": "text/html; charset=UTF-8",
+            "timezone": "America/New_York",
+            "proxyUsed": "basic",
+            "indexId": "80a0eade-774f-4825-9de3-d0cc76d09367",
+            "creditsUsed": 1,
+            "concurrencyLimited": false
+        }
+    },
+    "scrape_id": "019bce9a-3919-77a9-a110-21064a078c88",
+    "id": "iDF4j3DMhA7iAvNM7hdX0",
+    "startedAt": "2026-01-18T00:56:11.044Z",
+    "endedAt": "2026-01-18T00:56:22.537Z",
+    "endpoint": "scrape",
+    "formState": {
+        "extractSetupCompleted": false,
+        "urls": [],
+        "extractSchema": {
+            "type": "object",
+            "required": [],
+            "properties": {
+                "company_mission": {
+                    "type": "string"
+                },
+                "supports_sso": {
+                    "type": "boolean"
+                },
+                "is_open_source": {
+                    "type": "boolean"
+                },
+                "is_in_yc": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "extractPrompt": "Extract the company details, following the schema.",
+        "enableWebSearch": false,
+        "constrainUrls": false,
+        "options": {
+            "onlyMainContent": false,
+            "parsePDF": true,
+            "stealthMode": false,
+            "excludeTags": [],
+            "includeTags": [],
+            "waitFor": "",
+            "timeout": "",
+            "maxAge": "2 days",
+            "ignoreSitemap": false,
+            "crawlEntireDomain": false,
+            "sitemap": "include",
+            "limit": "10",
+            "maxDepth": "",
+            "excludePaths": [],
+            "includePaths": [],
+            "includeSubdomains": false,
+            "search": "",
+            "scrapeContentFromSearchResults": true,
+            "timeBasedSearch": "",
+            "location": "",
+            "prompt": ""
+        },
+        "formats": [
+            "branding"
+        ],
+        "sources": [
+            "web"
+        ],
+        "categories": [],
+        "jsonSchema": {
+            "type": "object",
+            "required": [],
+            "properties": {
+                "company_name": {
+                    "type": "string"
+                },
+                "company_description": {
+                    "type": "string"
+                }
+            }
+        },
+        "jsonPrompt": "",
+        "agent": {},
+        "url": "cloudtopg.com",
+        "endpoint": "scrape"
+    },
+    "status": "success",
+    "version": "dF8KGcX4e2LXAoxiUebL6",
+    "isPreview": false
+}
