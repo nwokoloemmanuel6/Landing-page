@@ -17,6 +17,41 @@
     });
   }
 
+  // ── FAQ Accordion Toggle ─────────────────────────────────
+  function initFaqAccordion() {
+    const faqButtons = document.querySelectorAll('.faq-question');
+
+    faqButtons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        const item = button.closest('.faq-item');
+        const answer = item.querySelector('.faq-item__answer');
+        if (!item || !answer) return;
+
+        const isActive = item.classList.contains('active');
+
+        // Close all other active FAQs first for a clean single-open experience
+        document.querySelectorAll('.faq-item.active').forEach(function (activeItem) {
+          if (activeItem !== item) {
+            activeItem.classList.remove('active');
+            const activeAnswer = activeItem.querySelector('.faq-item__answer');
+            if (activeAnswer) {
+              activeAnswer.style.maxHeight = null;
+            }
+          }
+        });
+
+        // Toggle current FAQ
+        if (!isActive) {
+          item.classList.add('active');
+          answer.style.maxHeight = answer.scrollHeight + "px";
+        } else {
+          item.classList.remove('active');
+          answer.style.maxHeight = null;
+        }
+      });
+    });
+  }
+
   // ── Scroll-triggered Fade In ────────────────────────────
   function initFadeIn() {
     const els = document.querySelectorAll('.fade-in');
@@ -132,6 +167,7 @@
   // ── Init ────────────────────────────────────────────────
   document.addEventListener('DOMContentLoaded', function () {
     initAccordions();
+    initFaqAccordion();
     initFadeIn();
     initStickyCta();
     initSmoothScroll();
