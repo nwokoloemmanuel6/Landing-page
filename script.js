@@ -144,28 +144,108 @@
       }
     });
 
-    // ── Trigger 2: Timed fallback (mobile + slow readers)
-    setTimeout(showPopup, POPUP_DELAY);
+    // ── Trigger 2: Inactivity (35 seconds without movement/scrolling)
+    var INACTIVITY_DELAY = 35000;
+    var inactivityTimer;
+
+    function resetInactivityTimer() {
+      if (hasShown) return;
+      clearTimeout(inactivityTimer);
+      inactivityTimer = setTimeout(showPopup, INACTIVITY_DELAY);
+    }
+
+    ['mousemove', 'mousedown', 'keydown', 'scroll', 'touchstart'].forEach(function (evt) {
+      document.addEventListener(evt, resetInactivityTimer, { passive: true });
+    });
+
+    resetInactivityTimer(); // Start the timer
+
+    // ── Trigger 3: Scroll Depth (70% of page)
+    function checkScrollDepth() {
+      if (hasShown) return;
+      var scrollPos = window.scrollY || window.pageYOffset;
+      var windowHeight = window.innerHeight || document.documentElement.clientHeight;
+      var documentHeight = Math.max(
+        document.body.scrollHeight, document.documentElement.scrollHeight,
+        document.body.offsetHeight, document.documentElement.offsetHeight,
+        document.body.clientHeight, document.documentElement.clientHeight
+      );
+
+      var scrollPercentage = (scrollPos + windowHeight) / documentHeight;
+      if (scrollPercentage > 0.7) {
+        showPopup();
+        window.removeEventListener('scroll', checkScrollDepth);
+      }
+    }
+    window.addEventListener('scroll', checkScrollDepth, { passive: true });
 
     // ── Close handlers
-    closeBtn.addEventListener('click', hidePopup);
+    function handleClose() {
+      hidePopup();
+      // As requested: if user closes it, don't show it again. (Session storage already handles this page load, 
+      // but long term we could use localStorage if needed. Sticking to sessionStorage matches current behavior.)
+    }
+
+    closeBtn.addEventListener('click', handleClose);
 
     overlay.addEventListener('click', function (e) {
-      if (e.target === overlay) hidePopup();
+      if (e.target === overlay) handleClose();
     });
 
     ctaBtn.addEventListener('click', function () {
-      hidePopup();
+      handleClose();
     });
 
     // Close on Escape key
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') hidePopup();
+      if (e.key === 'Escape') handleClose();
     });
+  }
+
+  // ── Dynamic Hero Content ─────────────────────────────────
+  function initDynamicHero() {
+    const params = new URLSearchParams(window.location.search);
+    const type = params.get('type');
+    if (!type) return;
+
+    const copies = {
+      worker: {
+        pre: "FOR WORKING PROFESSIONALS WHO DON’T HAVE TIME TO WASTE…",
+        hook: "What If You Didn’t Need 6 Free Hours a Day to Break Into Cloud?",
+        sub: "A structured, mentor-led 12-month path built for busy professionals — so you stay consistent without burnout."
+      },
+      tutorial: {
+        pre: "FOR ASPIRING CLOUD ENGINEERS STUCK IN TUTORIAL MODE...",
+        hook: "Still Learning Cloud… But Not Getting Paid For It?",
+        sub: "Turn scattered tutorials into a structured path to build projects, get certified, and get hired."
+      },
+      burned: {
+        pre: "FOR PEOPLE WHO’VE TRIED BEFORE AND DON’T WANT TO BE DISAPPOINTED AGAIN...",
+        hook: "This Isn’t Another Course You Start and Quit.",
+        sub: "A mentor-led system with built-in accountability — so you never get stuck or quit halfway."
+      },
+      watcher: {
+        pre: "FOR THE ONES WHO’VE BEEN WATCHING FROM THE SIDELINES...",
+        hook: "What If This Is The Year You Actually Finish?",
+        sub: "A 12-month mentorship that turns beginners into certified, hireable cloud engineers."
+      }
+    };
+
+    const content = copies[type];
+    if (content) {
+      const preEl = document.querySelector('.hero__pre-headline');
+      const hookEl = document.querySelector('.hero__headline');
+      const subEl = document.querySelector('.hero__subheadline');
+
+      if (preEl) preEl.textContent = content.pre;
+      if (hookEl) hookEl.textContent = content.hook;
+      if (subEl) subEl.textContent = content.sub;
+    }
   }
 
   // ── Init ────────────────────────────────────────────────
   document.addEventListener('DOMContentLoaded', function () {
+    initDynamicHero();
     initAccordions();
     initFaqAccordion();
     initFadeIn();
