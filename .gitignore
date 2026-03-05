@@ -1,0 +1,12 @@
+# Local scripts
+fix.ps1
+
+# Large reference media (not used by the live site)
+Tools/selllikecrazysite.mp4
+
+# Planning & branding source files
+Tools/Landing-page-structure
+Tools/Branding/
+Tools/offer
+Tools/References/Reference
+Tools/Testimonials/Testimonial

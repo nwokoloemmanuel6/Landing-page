@@ -1,0 +1,10 @@
+# Development & tooling
+.agent/
+.git/
+fix.ps1
+
+# Large reference files not used by the site
+Tools/selllikecrazysite.mp4
+Tools/Landing-page-structure
+Tools/Branding/
+Tools/offer
