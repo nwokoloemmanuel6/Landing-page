@@ -260,5 +260,44 @@
       var now = new Date();
       dateEl.textContent = months[now.getMonth()] + ' ' + now.getDate();
     }
+
+    // Initialize WhatsApp Redirect
+    initWhatsAppRedirect();
   });
+
+  function initWhatsAppRedirect() {
+    var ctaButtons = document.querySelectorAll('.open-modal, a[href="#payment-modal"], .cta-pulse-btn, .btn--primary, a[href="#apply"]');
+    var overlay = document.getElementById('whatsapp-redirect-overlay');
+
+    // Replace with the actual WhatsApp number (include country code, omit the +)
+    // E.g., '2348000000000'
+    var whatsappNumber = '2349079778199';
+    var preconfiguredMessage = "Hi Cloud Top G Admissions Team! I'm ready to start my application process for Cohort 2026. Please guide me through the admission process.";
+    var encodedMessage = encodeURIComponent(preconfiguredMessage);
+    var whatsappUrl = 'https://wa.me/' + whatsappNumber + '?text=' + encodedMessage;
+
+    ctaButtons.forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        var isModalBtn = this.classList.contains('open-modal') || this.getAttribute('href') === '#payment-modal' || this.classList.contains('btn--primary') || this.getAttribute('href') === '#apply';
+        if (isModalBtn) {
+          e.preventDefault();
+          if (overlay) {
+            overlay.classList.add('active');
+
+            setTimeout(function () {
+              window.location.href = whatsappUrl;
+
+              // Remove active state after returning to page (e.g. going back in browser)
+              setTimeout(function () {
+                overlay.classList.remove('active');
+              }, 1000);
+            }, 2000); // 2 second delay for the cool loading vibe
+          } else {
+            window.location.href = whatsappUrl;
+          }
+        }
+      });
+    });
+  }
+
 })();
