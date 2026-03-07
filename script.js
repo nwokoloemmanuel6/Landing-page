@@ -269,10 +269,26 @@
     var ctaButtons = document.querySelectorAll('.open-modal, a[href="#payment-modal"], .cta-pulse-btn, .btn--primary, a[href="#apply"]');
     var overlay = document.getElementById('whatsapp-redirect-overlay');
 
+    // Get dynamic URL type
+    var params = new URLSearchParams(window.location.search);
+    var type = params.get('type');
+
+    // Choose preconfigured message based on type
+    var preconfiguredMessage = "Hi Cloud Top G Admissions Team! I'm ready to start my application process for Cohort 2026. Please guide me through the admission process.";
+
+    if (type === 'worker') {
+      preconfiguredMessage = "Hi Cloud Top G! I'm a busy professional and I'm ready to start my application process for Cohort 2026. Please guide me through the admission process.";
+    } else if (type === 'tutorial') {
+      preconfiguredMessage = "Hi Cloud Top G! I'm tired of tutorial hell and I'm ready to start my application process for Cohort 2026. Please guide me through the admission process.";
+    } else if (type === 'burned') {
+      preconfiguredMessage = "Hi Cloud Top G! I'm ready to commit to a system that works. I want to start my application process for Cohort 2026. Please guide me through the admission process.";
+    } else if (type === 'watcher') {
+      preconfiguredMessage = "Hi Cloud Top G! I'm finally ready to take action. I want to start my application process for Cohort 2026. Please guide me through the admission process.";
+    }
+
     // Replace with the actual WhatsApp number (include country code, omit the +)
     // E.g., '2348000000000'
     var whatsappNumber = '2349079778199';
-    var preconfiguredMessage = "Hi Cloud Top G Admissions Team! I'm ready to start my application process for Cohort 2026. Please guide me through the admission process.";
     var encodedMessage = encodeURIComponent(preconfiguredMessage);
     var whatsappUrl = 'https://wa.me/' + whatsappNumber + '?text=' + encodedMessage;
 
