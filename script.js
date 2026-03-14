@@ -296,11 +296,13 @@
       btn.addEventListener('click', function (e) {
         e.preventDefault();
 
-        // ── Meta Pixel: Track CTA click as a Lead conversion ──
+        // ── Meta Pixel: Track CTA click as a Purchase conversion ──
         if (typeof fbq === 'function') {
-          fbq('track', 'Lead', {
+          fbq('track', 'Purchase', {
             content_name: 'WhatsApp Admission CTA',
-            content_category: type || 'direct'
+            content_category: type || 'direct',
+            currency: 'NGN',
+            value: 20000
           });
         }
 
