@@ -295,6 +295,15 @@
     ctaButtons.forEach(function (btn) {
       btn.addEventListener('click', function (e) {
         e.preventDefault();
+
+        // ── Meta Pixel: Track CTA click as a Lead conversion ──
+        if (typeof fbq === 'function') {
+          fbq('track', 'Lead', {
+            content_name: 'WhatsApp Admission CTA',
+            content_category: type || 'direct'
+          });
+        }
+
         if (overlay) {
           overlay.classList.add('active');
 
